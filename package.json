@@ -1,0 +1,19 @@
+{
+  "name": "gerenciador-de-projetos",
+  "version": "1.0.0",
+  "description": "Projeto criado com a finalidade de gerenciar tarefas",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/anselmotadeu/projectmanager-pro.git"
+  },
+  "author": "Anselmo Santos",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/anselmotadeu/projectmanager-pro/issues"
+  },
+  "homepage": "https://github.com/anselmotadeu/projectmanager-pro#readme"
+}
