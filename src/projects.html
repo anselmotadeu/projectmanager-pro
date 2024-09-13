@@ -11,7 +11,11 @@
     />
   </head>
   <body>
-    <h1>Gerenciamento de Projetos</h1>
+    <div class="header">
+      <h1>Gerenciamento de Projetos</h1>
+      <button id="logoutBtn" class="logoutBtn">Logout</button>
+    </div>
+
     <p>Bem-vindo, <span id="usernameDisplay"></span>!</p>
 
     <h2>Criar Novo Projeto</h2>
@@ -24,14 +28,26 @@
     <h2>Projetos Atuais</h2>
     <ul id="projectList"></ul>
 
-    <button id="logoutBtn">Logout</button>
-
     <!-- Modal de confirmação de exclusão -->
     <div id="deleteModal" class="modal">
       <div class="modal-content">
         <p>Tem certeza de que deseja excluir este projeto?</p>
         <button id="confirmDelete" class="deleteModalBtn">Excluir</button>
         <button id="cancelDelete" class="cancelModalBtn">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- Modal para adicionar tarefas -->
+    <div id="addTaskModal" class="modal">
+      <div class="modal-content">
+        <h2>Adicionar Nova Tarefa</h2>
+        <form id="taskForm">
+          <label for="taskName">Nome da Tarefa:</label>
+          <input type="text" id="taskName" required>
+          <br><br>
+          <button type="submit" class="submitTaskBtn">Adicionar Tarefa</button>
+          <button type="button" id="closeTaskModal" class="cancelTaskBtn">Cancelar</button>
+        </form>
       </div>
     </div>
 
