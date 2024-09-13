@@ -1,38 +1,41 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Gerenciamento de Projetos</title>
-  <link rel="stylesheet" href="style.css">
-  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-</head>
-<body>
-  <h1>Gerenciamento de Projetos</h1>
-  <p>Bem-vindo, <span id="usernameDisplay"></span>!</p>
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Gerenciamento de Projetos</title>
+    <link rel="stylesheet" href="style.css" />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css"
+    />
+  </head>
+  <body>
+    <h1>Gerenciamento de Projetos</h1>
+    <p>Bem-vindo, <span id="usernameDisplay"></span>!</p>
 
-  <h2>Criar Novo Projeto</h2>
-  <form id="projectForm">
-    <label for="projectName">Nome do Projeto:</label>
-    <input type="text" id="projectName" required>
-    <button type="submit">Criar Projeto</button>
-  </form>
+    <h2>Criar Novo Projeto</h2>
+    <form id="projectForm">
+      <label for="projectName">Nome do Projeto:</label>
+      <input type="text" id="projectName" required />
+      <button type="submit">Criar Projeto</button>
+    </form>
 
-  <h2>Projetos Atuais</h2>
-  <ul id="projectList"></ul>
+    <h2>Projetos Atuais</h2>
+    <ul id="projectList"></ul>
 
-  <button id="logoutBtn">Logout</button>
+    <button id="logoutBtn">Logout</button>
 
-  <!-- Modal de confirmação de exclusão -->
+    <!-- Modal de confirmação de exclusão -->
     <div id="deleteModal" class="modal">
-        <div class="modal-content">
+      <div class="modal-content">
         <p>Tem certeza de que deseja excluir este projeto?</p>
         <button id="confirmDelete" class="deleteModalBtn">Excluir</button>
         <button id="cancelDelete" class="cancelModalBtn">Cancelar</button>
-        </div>
+      </div>
     </div>
 
-  <!-- Verificar se o caminho do script está correto -->
-  <script src="projects.js"></script>
-</body>
+    <!-- Verificar se o caminho do script está correto -->
+    <script src="projects.js"></script>
+  </body>
 </html>

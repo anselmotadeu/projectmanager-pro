@@ -1,127 +1,129 @@
 /* Estilos Globais */
 * {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
-  }
-  
-  body {
-    font-family: Arial, sans-serif;
-    background-color: #f4f4f4;
-    color: #333;
-    padding: 20px;
-  }
-  
-  h1, h2 {
-    color: #333;
-    margin-bottom: 20px;
-  }
-  
-  a {
-    color: #333;
-    text-decoration: none;
-    font-weight: bold;
-  }
-  
-  a:hover {
-    color: #007BFF;
-  }
-  
-  /* Estilo dos Formulários */
-  form {
-    margin-bottom: 20px;
-  }
-  
-  label {
-    display: block;
-    margin-bottom: 8px;
-    font-weight: bold;
-  }
-  
-  input[type="text"],
-  input[type="password"] {
-    width: 100%;
-    padding: 10px;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  button {
-    padding: 10px 15px;
-    background-color: #007BFF;
-    color: white;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
-  }
-  
-  button:hover {
-    background-color: #0056b3;
-  }
-  
-  /* Estilo da Lista de Projetos */
-  ul {
-    list-style-type: none;
-  }
-  
-  ul li {
-    padding: 10px;
-    background-color: white;
-    margin-bottom: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
-  }
-  
-  /* Estilo para o Contêiner Centralizado */
-  .container {
-    max-width: 600px;
-    margin: 0 auto;
-    background-color: white;
-    padding: 20px;
-    border-radius: 8px;
-    box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-  }
-  
-  p {
-    margin-bottom: 15px;
-  }
-  
-  button.logout {
-    background-color: #dc3545;
-  }
-  
-  button.logout:hover {
-    background-color: #c82333;
-  }
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
 
-  /* Estilos para os ícones */
+body {
+  font-family: Arial, sans-serif;
+  background-color: #f4f4f4;
+  color: #333;
+  padding: 20px;
+}
+
+h1,
+h2 {
+  color: #333;
+  margin-bottom: 20px;
+}
+
+a {
+  color: #333;
+  text-decoration: none;
+  font-weight: bold;
+}
+
+a:hover {
+  color: #007bff;
+}
+
+/* Estilo dos Formulários */
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type='text'],
+input[type='password'] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
+}
+
+/* Estilo da Lista de Projetos */
+ul {
+  list-style-type: none;
+}
+
+ul li {
+  padding: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+/* Estilo para o Contêiner Centralizado */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+button.logout {
+  background-color: #dc3545;
+}
+
+button.logout:hover {
+  background-color: #c82333;
+}
+
+/* Estilos para os ícones */
 .editIcon {
-    color: blue;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  .deleteIcon {
-    color: red;
-    cursor: pointer;
-    margin-left: 10px;
-  }
-  
-  /* Ajuste do tamanho dos ícones */
-  .editIcon, .deleteIcon {
-    font-size: 1.2em; /* Ajuste o tamanho conforme necessário */
-  }
-  
-  .editIcon:hover {
-    color: darkblue; /* Cor ao passar o mouse no ícone de edição */
-  }
-  
-  .deleteIcon:hover {
-    color: darkred; /* Cor ao passar o mouse no ícone de exclusão */
-  }
+  color: blue;
+  cursor: pointer;
+  margin-left: 10px;
+}
 
-  /* Estilos para o modal de exclusão */
+.deleteIcon {
+  color: red;
+  cursor: pointer;
+  margin-left: 10px;
+}
+
+/* Ajuste do tamanho dos ícones */
+.editIcon,
+.deleteIcon {
+  font-size: 1.2em; /* Ajuste o tamanho conforme necessário */
+}
+
+.editIcon:hover {
+  color: darkblue; /* Cor ao passar o mouse no ícone de edição */
+}
+
+.deleteIcon:hover {
+  color: darkred; /* Cor ao passar o mouse no ícone de exclusão */
+}
+
+/* Estilos para o modal de exclusão */
 .modal {
   display: none; /* Modal começa escondido */
   position: fixed;

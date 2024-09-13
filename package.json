@@ -4,7 +4,7 @@
   "description": "Projeto criado com a finalidade de gerenciar tarefas",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "format": "prettier --write ."
   },
   "repository": {
     "type": "git",
@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/anselmotadeu/projectmanager-pro/issues"
   },
-  "homepage": "https://github.com/anselmotadeu/projectmanager-pro#readme"
+  "homepage": "https://github.com/anselmotadeu/projectmanager-pro#readme",
+  "devDependencies": {
+    "prettier": "^3.3.3"
+  }
 }
