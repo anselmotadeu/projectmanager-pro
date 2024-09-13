@@ -68,22 +68,29 @@ document.addEventListener('DOMContentLoaded', function() {
     });
   
     // Função para exibir o modal de confirmação de exclusão
-    function showModal(projectIndex) {
-      const modal = document.getElementById('deleteModal');
-      modal.style.display = 'block'; // Exibe o modal
-  
-      // Quando o usuário clica em "Excluir"
-      document.getElementById('confirmDelete').addEventListener('click', function() {
-        projects.splice(projectIndex, 1); // Remove o projeto da lista
-        localStorage.setItem('projects', JSON.stringify(projects));
-        modal.style.display = 'none'; // Fecha o modal
-        displayProjects(); // Atualiza a lista
-      });
-  
-      // Quando o usuário clica em "Cancelar"
-      document.getElementById('cancelDelete').addEventListener('click', function() {
-        modal.style.display = 'none'; // Fecha o modal
-      });
-    }
+function showModal(projectIndex) {
+  const modal = document.getElementById('deleteModal');
+  modal.style.display = 'flex'; // Exibe o modal centralizado
+
+  // Quando o usuário clica em "Excluir"
+  document.getElementById('confirmDelete').onclick = function() {
+    projects.splice(projectIndex, 1); // Remove o projeto da lista
+    localStorage.setItem('projects', JSON.stringify(projects));
+    modal.style.display = 'none'; // Fecha o modal
+    displayProjects(); // Atualiza a lista
+  };
+
+  // Quando o usuário clica em "Cancelar"
+  document.getElementById('cancelDelete').onclick = function() {
+    modal.style.display = 'none'; // Fecha o modal sem excluir
+  };
+}
+
+// Adicionando o evento de clique no ícone de exclusão
+document.querySelectorAll('.deleteIcon').forEach((icon, index) => {
+  icon.addEventListener('click', function() {
+    showModal(index); // Abre o modal para o projeto correspondente
   });
+});
+});
   
