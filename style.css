@@ -94,4 +94,79 @@
   button.logout:hover {
     background-color: #c82333;
   }
+
+  /* Estilos para os ícones */
+.editIcon {
+    color: blue;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  .deleteIcon {
+    color: red;
+    cursor: pointer;
+    margin-left: 10px;
+  }
+  
+  /* Ajuste do tamanho dos ícones */
+  .editIcon, .deleteIcon {
+    font-size: 1.2em; /* Ajuste o tamanho conforme necessário */
+  }
+  
+  .editIcon:hover {
+    color: darkblue; /* Cor ao passar o mouse no ícone de edição */
+  }
+  
+  .deleteIcon:hover {
+    color: darkred; /* Cor ao passar o mouse no ícone de exclusão */
+  }
+
+  /* Estilos para o modal de exclusão */
+.modal {
+    display: none; /* Modal começa escondido */
+    position: fixed;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%); /* Centraliza o modal */
+    background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro */
+    width: 100%;
+    height: 100%;
+    justify-content: center;
+    align-items: center; /* Mantém o conteúdo centralizado */
+  }
+  
+  .modal-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 8px;
+    text-align: center;
+    width: 300px;
+  }
+  
+  .deleteModalBtn {
+    background-color: red;
+    color: white;
+    padding: 10px 20px;
+    margin-right: 10px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .cancelModalBtn {
+    background-color: gray;
+    color: white;
+    padding: 10px 20px;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+  }
+  
+  .deleteModalBtn:hover {
+    background-color: darkred;
+  }
+  
+  .cancelModalBtn:hover {
+    background-color: darkgray;
+  }
   
