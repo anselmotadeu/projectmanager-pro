@@ -231,3 +231,9 @@ button {
 button:hover {
   background-color: #0056b3;
 }
+
+.filter-right {
+  float: right;
+  margin-right: 20px;
+  margin-top: -40px; /* Ajuste a posição para ficar abaixo do título */
+}
