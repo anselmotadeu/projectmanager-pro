@@ -70,6 +70,7 @@ document.addEventListener('DOMContentLoaded', function () {
         const taskLi = document.createElement('li');
         taskLi.innerHTML = `
           <input type="checkbox" ${task.status === 'complete' ? 'checked' : ''}>
+          <span class="taskName">${task.name}</span> <span class="taskResponsavel">(${task.responsavel})</span> <!-- Exibir responsável -->
           <span class="taskName">${task.name}</span>
           <select class="statusSelect">
             <option value="pending" ${task.status === 'pending' ? 'selected' : ''}>Pendente</option>
@@ -176,8 +177,14 @@ document.addEventListener('DOMContentLoaded', function () {
   taskForm.addEventListener('submit', function (e) {
     e.preventDefault();
     const taskName = document.getElementById('taskName').value;
+    const taskResponsavel = document.getElementById('taskResponsavel').value; // Captura o nome do responsável
+
     if (taskName && currentProjectIndex !== null) {
-      const newTask = { name: taskName, status: 'pending' }; // Certifica que a nova tarefa começa como 'pending'
+      const newTask = {
+        name: taskName,
+        status: 'pending',
+        responsavel: taskResponsavel,
+      }; // Inclui o responsável na tarefa
       projects[currentProjectIndex].tasks.push(newTask);
       localStorage.setItem('projects', JSON.stringify(projects));
       displayProjects();
