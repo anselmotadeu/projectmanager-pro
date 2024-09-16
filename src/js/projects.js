@@ -12,11 +12,21 @@ document.addEventListener('DOMContentLoaded', function () {
   const addTaskModal = document.getElementById('addTaskModal');
   const closeTaskModal = document.getElementById('closeTaskModal');
   const taskForm = document.getElementById('taskForm');
-  const logoutModal = document.getElementById('logoutModal');
+  const filterStatus = document.getElementById('filterStatus');
+  const logoutModal = document.getElementById('logoutModal'); // Modal de logout
   let currentProjectIndex = null;
   let currentTaskIndex = null;
 
   const projects = JSON.parse(localStorage.getItem('projects')) || [];
+  const selectedFilter = localStorage.getItem('selectedFilter') || 'all'; // Persistência do filtro de status
+
+  filterStatus.value = selectedFilter; // Define o valor do filtro para o estado salvo
+
+  // Função para filtrar tarefas
+  filterStatus.addEventListener('change', function () {
+    localStorage.setItem('selectedFilter', filterStatus.value); // Salva o filtro selecionado
+    displayProjects();
+  });
 
   function displayProjects() {
     projectList.innerHTML = '';
@@ -31,18 +41,78 @@ document.addEventListener('DOMContentLoaded', function () {
       `;
       projectList.appendChild(li);
 
+      const taskList = li.querySelector('.taskList');
+      const input = li.querySelector('.projectNameInput');
+      const addTaskIcon = li.querySelector('.addTaskIcon');
+
+      // Eventos de edição, exclusão e adição de tarefas
       bindProjectEvents(li, project, index);
+
+      // Exibir as tarefas associadas ao projeto, aplicando o filtro
+      displayTasks(project.tasks, taskList);
     });
+  }
+
+  function displayTasks(tasks, taskList) {
+    taskList.innerHTML = '';
+    const selectedFilter = filterStatus.value;
+
+    tasks
+      .filter((task) => {
+        // Aplicar o filtro de status
+        if (selectedFilter === 'all') {
+          return true;
+        } else {
+          return task.status === selectedFilter;
+        }
+      })
+      .forEach((task, index) => {
+        const taskLi = document.createElement('li');
+        taskLi.innerHTML = `
+          <input type="checkbox" ${task.status === 'complete' ? 'checked' : ''}>
+          <span class="taskName">${task.name}</span>
+          <select class="statusSelect">
+            <option value="pending" ${task.status === 'pending' ? 'selected' : ''}>Pendente</option>
+            <option value="inProgress" ${task.status === 'inProgress' ? 'selected' : ''}>Em Andamento</option>
+            <option value="complete" ${task.status === 'complete' ? 'selected' : ''}>Concluído</option>
+          </select>
+          <i class="fas fa-trash-alt deleteIcon"></i>
+        `;
+        taskList.appendChild(taskLi);
+
+        // Atualizar o status da tarefa ao mudar o select
+        taskLi
+          .querySelector('.statusSelect')
+          .addEventListener('change', function () {
+            task.status = this.value;
+            localStorage.setItem('projects', JSON.stringify(projects));
+            displayTasks(tasks, taskList);
+          });
+
+        // Alterar status para pending ou complete ao marcar/desmarcar o checkbox
+        taskLi
+          .querySelector('input[type="checkbox"]')
+          .addEventListener('change', function () {
+            task.status = this.checked ? 'complete' : 'pending'; // Definir como 'pending' ao desmarcar
+            localStorage.setItem('projects', JSON.stringify(projects));
+            displayTasks(tasks, taskList);
+          });
+
+        taskLi
+          .querySelector('.deleteIcon')
+          .addEventListener('click', function () {
+            currentTaskIndex = index;
+            showTaskDeleteModal(currentTaskIndex, tasks, taskList);
+          });
+      });
   }
 
   function bindProjectEvents(li, project, index) {
     const input = li.querySelector('.projectNameInput');
-    const taskList = li.querySelector('.taskList');
-    const editIcon = li.querySelector('.editIcon');
     const deleteIcon = li.querySelector('.deleteIcon');
     const addTaskIcon = li.querySelector('.addTaskIcon');
 
-    editIcon.addEventListener('click', function () {
+    input.addEventListener('click', function () {
       input.removeAttribute('readonly');
       input.focus();
 
@@ -55,49 +125,39 @@ document.addEventListener('DOMContentLoaded', function () {
     });
 
     deleteIcon.addEventListener('click', function () {
-      showModalBasedOnTaskPresence('deleteModal', index, project.tasks.length);
+      if (project.tasks.length > 0) {
+        showDeleteProjectWithTasksModal(index);
+      } else {
+        showModal('deleteModal', index);
+      }
     });
 
     addTaskIcon.addEventListener('click', function () {
       currentProjectIndex = index;
       addTaskModal.style.display = 'flex';
     });
-
-    displayTasks(project.tasks, taskList);
   }
 
-  function displayTasks(tasks, taskList) {
-    taskList.innerHTML = '';
-    tasks.forEach((task, index) => {
-      const taskLi = document.createElement('li');
-      taskLi.innerHTML = `
-        <input type="checkbox" ${task.status === 'complete' ? 'checked' : ''}>
-        <span class="taskName">${task.name}</span>
-        <select class="statusSelect">
-          <option value="pending" ${task.status === 'pending' ? 'selected' : ''}>Pendente</option>
-          <option value="inProgress" ${task.status === 'inProgress' ? 'selected' : ''}>Em Andamento</option>
-          <option value="complete" ${task.status === 'complete' ? 'selected' : ''}>Concluído</option>
-        </select>
-        <i class="fas fa-trash-alt deleteIcon"></i>
-      `;
-      taskList.appendChild(taskLi);
+  function bindTaskEvents(taskLi, tasks, taskIndex, taskList) {
+    const checkbox = taskLi.querySelector('input[type="checkbox"]');
+    const deleteIcon = taskLi.querySelector('.deleteIcon');
+    const statusSelect = taskLi.querySelector('.statusSelect');
 
-      taskLi.querySelector('.statusSelect').addEventListener('change', function () {
-        task.status = this.value;
-        localStorage.setItem('projects', JSON.stringify(projects));
-        displayTasks(tasks, taskList);
-      });
+    checkbox.addEventListener('change', function () {
+      tasks[taskIndex].status = this.checked ? 'complete' : 'pending'; // Corrigido para 'pending'
+      localStorage.setItem('projects', JSON.stringify(projects));
+      displayTasks(tasks, taskList);
+    });
 
-      taskLi.querySelector('input[type="checkbox"]').addEventListener('change', function () {
-        task.status = this.checked ? 'complete' : 'pending';
-        localStorage.setItem('projects', JSON.stringify(projects));
-        displayTasks(tasks, taskList);
-      });
+    statusSelect.addEventListener('change', function () {
+      tasks[taskIndex].status = this.value;
+      localStorage.setItem('projects', JSON.stringify(projects));
+      displayTasks(tasks, taskList);
+    });
 
-      taskLi.querySelector('.deleteIcon').addEventListener('click', function () {
-        currentTaskIndex = index;
-        showTaskDeleteModal(currentTaskIndex, tasks, taskList);
-      });
+    deleteIcon.addEventListener('click', function () {
+      currentTaskIndex = taskIndex;
+      showTaskDeleteModal(currentTaskIndex, tasks, taskList);
     });
   }
 
@@ -117,12 +177,12 @@ document.addEventListener('DOMContentLoaded', function () {
     e.preventDefault();
     const taskName = document.getElementById('taskName').value;
     if (taskName && currentProjectIndex !== null) {
-      const newTask = { name: taskName, status: 'incomplete' };
+      const newTask = { name: taskName, status: 'pending' }; // Certifica que a nova tarefa começa como 'pending'
       projects[currentProjectIndex].tasks.push(newTask);
       localStorage.setItem('projects', JSON.stringify(projects));
       displayProjects();
-      addTaskModal.style.display = 'none';
-      taskForm.reset();
+      taskForm.reset(); // Limpa o campo do formulário
+      addTaskModal.style.display = 'none'; // Fecha o modal automaticamente
     }
   });
 
@@ -130,8 +190,11 @@ document.addEventListener('DOMContentLoaded', function () {
     addTaskModal.style.display = 'none';
   });
 
-  function showModal(modalId, projectIndex) {
-    const modal = document.getElementById(modalId);
+  function showDeleteProjectWithTasksModal(projectIndex) {
+    const modal = document.getElementById('deleteModal');
+    const message = document.getElementById('deleteModalMessage');
+    message.textContent =
+      'Este projeto contém tarefas. Se excluir, todas as tarefas serão removidas permanentemente. Tem certeza de que deseja excluir este projeto?';
     modal.style.display = 'flex';
 
     document.getElementById('confirmDelete').onclick = function () {
@@ -146,17 +209,10 @@ document.addEventListener('DOMContentLoaded', function () {
     };
   }
 
-  function showModalBasedOnTaskPresence(modalId, projectIndex, taskCount) {
+  function showModal(modalId, projectIndex) {
     const modal = document.getElementById(modalId);
-    const modalMessage = modal.querySelector('p');
-    
-    // Altera a mensagem com base no número de tarefas
-    if (taskCount > 0) {
-      modalMessage.textContent = "Este projeto contém tarefas. Se excluir, todas as tarefas serão removidas permanentemente. Tem certeza de que deseja excluir este projeto?";
-    } else {
-      modalMessage.textContent = "Tem certeza de que deseja excluir este projeto?";
-    }
-
+    const message = document.getElementById('deleteModalMessage');
+    message.textContent = 'Tem certeza de que deseja excluir este projeto?';
     modal.style.display = 'flex';
 
     document.getElementById('confirmDelete').onclick = function () {
@@ -187,17 +243,19 @@ document.addEventListener('DOMContentLoaded', function () {
     };
   }
 
+  // Adicionar evento para abrir o modal de logout
   document.getElementById('logoutBtn').addEventListener('click', function () {
-    logoutModal.style.display = 'flex';
+    logoutModal.style.display = 'flex'; // Exibe o modal de logout
   });
 
+  // Função para confirmar ou cancelar o logout
   document.getElementById('confirmLogout').onclick = function () {
     localStorage.removeItem('loggedInUser');
     window.location.href = 'login.html';
   };
 
   document.getElementById('cancelLogout').onclick = function () {
-    logoutModal.style.display = 'none';
+    logoutModal.style.display = 'none'; // Fecha o modal de logout
   };
 
   displayProjects();

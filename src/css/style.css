@@ -164,15 +164,15 @@ ul li {
   color: black;
 }
 
-.statusSelect option[value="pending"] {
+.statusSelect option[value='pending'] {
   color: orange;
 }
 
-.statusSelect option[value="inProgress"] {
+.statusSelect option[value='inProgress'] {
   color: blue;
 }
 
-.statusSelect option[value="complete"] {
+.statusSelect option[value='complete'] {
   color: green;
 }
 
