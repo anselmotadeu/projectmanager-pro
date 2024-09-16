@@ -9,9 +9,9 @@
 - **Registro e Login de Usuários:** Simulação de autenticação utilizando localStorage.
 - **Gerenciamento de Projetos:** Criação, edição e exclusão de projetos com edição inline (edição direta no campo do projeto).
 - **Modal de Confirmação de Exclusão:** Ao excluir um projeto, um modal é exibido com a opção de confirmação.
-- **Gerenciamento de Tarefas:** Atribuição de tarefas com prazos e responsáveis (funcionalidade futura).
-- **Status de Tarefas:** Acompanhamento de tarefas em andamento e concluídas (funcionalidade futura).
-- **Filtro de Tarefas:** Filtros por status e projetos (funcionalidade futura).
+- **Gerenciamento de Tarefas:** Atribuição de tarefas com prazos e responsáveis.
+- **Status de Tarefas:** Acompanhamento de tarefas em andamento e concluídas.
+- **Filtro de Tarefas:** Filtros por status e projetos.
 
 ## Tecnologias Utilizadas
 
@@ -37,7 +37,20 @@
 
    ```bash
    git clone https://github.com/anselmotadeu/projectmanager-pro.git
-
    ```
 
-2. Abra o arquivo index.html ou qualquer outra página diretamente no navegador para iniciar o projeto.
+2. Abra o arquivo `index.html` ou qualquer outra página diretamente no navegador para iniciar o projeto.
+
+## Funcionalidades Futuras
+
+- Integração com API de Projetos Externos.
+- Notificações de tarefas pendentes.
+- Edição de Tarefas em Modal.
+- Tema Escuro.
+- Otimização para dispositivos móveis (Responsividade aprimorada).
+
+##### Você me encontra em:
+
+<a href="https://www.linkedin.com/in/anselmo-santos-0114b5172/" target="_blank">
+    <img src="https://img.shields.io/badge/linkedin-%230077B5.svg?style=for-the-badge&logo=linkedin&logoColor=white" />
+</a>
