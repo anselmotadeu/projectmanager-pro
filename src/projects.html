@@ -27,6 +27,12 @@
 
     <h2>Projetos Atuais</h2>
 
+    <div class="projectHeaders">
+      <span class="header-task">Tarefa</span>
+      <span class="header-responsible">Responsável</span>
+      <span class="header-description">Descrição</span>
+    </div>
+
     <select id="filterStatus" class="filter-right">
       <option value="all">Todos</option>
       <option value="pending">Pendente</option>
@@ -57,8 +63,6 @@
 
           <label for="taskResponsavel">Responsável:</label>
           <input type="text" id="taskResponsavel" required />
-          <!-- Novo campo para o responsável -->
-
           <br /><br />
           <button type="submit" class="submitTaskBtn">Adicionar Tarefa</button>
           <button type="button" id="closeTaskModal" class="cancelTaskBtn">
@@ -83,6 +87,23 @@
         <p>Tem certeza de que deseja sair?</p>
         <button id="confirmLogout" class="deleteModalBtn">Sair</button>
         <button id="cancelLogout" class="cancelModalBtn">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- Modal para mais informações -->
+    <div id="taskDetailsModal" class="modal">
+      <div class="modal-content">
+        <h2>Detalhes da Tarefa</h2>
+        <textarea
+          id="taskDetails"
+          rows="4"
+          placeholder="Adicione mais informações ou comentários..."
+        ></textarea>
+        <br /><br />
+        <button id="saveTaskDetails" class="submitTaskBtn">Salvar</button>
+        <button id="closeTaskDetailsModal" class="cancelTaskBtn">
+          Cancelar
+        </button>
       </div>
     </div>
 

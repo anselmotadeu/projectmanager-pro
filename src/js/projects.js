@@ -70,16 +70,28 @@ document.addEventListener('DOMContentLoaded', function () {
         const taskLi = document.createElement('li');
         taskLi.innerHTML = `
           <input type="checkbox" ${task.status === 'complete' ? 'checked' : ''}>
-          <span class="taskName">${task.name}</span> <span class="taskResponsavel">(${task.responsavel})</span> <!-- Exibir responsável -->
-          <span class="taskName">${task.name}</span>
+          <span class="taskName">${task.name}</span> 
+          <span class="taskResponsavel">(${task.responsavel || 'Sem responsável'})</span>
+          <p class="taskDetailsView">${task.details ? task.details : 'Sem detalhes'}</p>
           <select class="statusSelect">
             <option value="pending" ${task.status === 'pending' ? 'selected' : ''}>Pendente</option>
             <option value="inProgress" ${task.status === 'inProgress' ? 'selected' : ''}>Em Andamento</option>
             <option value="complete" ${task.status === 'complete' ? 'selected' : ''}>Concluído</option>
           </select>
+          <i class="fas fa-info-circle detailsIcon"></i>
           <i class="fas fa-trash-alt deleteIcon"></i>
         `;
+
         taskList.appendChild(taskLi);
+
+        // Evento para abrir o modal de detalhes
+        taskLi
+          .querySelector('.detailsIcon')
+          .addEventListener('click', function () {
+            currentTaskIndex = index;
+            document.getElementById('taskDetails').value = task.details || ''; // Preencher o campo de detalhes se já existir
+            document.getElementById('taskDetailsModal').style.display = 'flex'; // Abrir modal
+          });
 
         // Atualizar o status da tarefa ao mudar o select
         taskLi
@@ -94,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function () {
         taskLi
           .querySelector('input[type="checkbox"]')
           .addEventListener('change', function () {
-            task.status = this.checked ? 'complete' : 'pending'; // Definir como 'pending' ao desmarcar
+            task.status = this.checked ? 'complete' : 'pending';
             localStorage.setItem('projects', JSON.stringify(projects));
             displayTasks(tasks, taskList);
           });
@@ -139,29 +151,6 @@ document.addEventListener('DOMContentLoaded', function () {
     });
   }
 
-  function bindTaskEvents(taskLi, tasks, taskIndex, taskList) {
-    const checkbox = taskLi.querySelector('input[type="checkbox"]');
-    const deleteIcon = taskLi.querySelector('.deleteIcon');
-    const statusSelect = taskLi.querySelector('.statusSelect');
-
-    checkbox.addEventListener('change', function () {
-      tasks[taskIndex].status = this.checked ? 'complete' : 'pending'; // Corrigido para 'pending'
-      localStorage.setItem('projects', JSON.stringify(projects));
-      displayTasks(tasks, taskList);
-    });
-
-    statusSelect.addEventListener('change', function () {
-      tasks[taskIndex].status = this.value;
-      localStorage.setItem('projects', JSON.stringify(projects));
-      displayTasks(tasks, taskList);
-    });
-
-    deleteIcon.addEventListener('click', function () {
-      currentTaskIndex = taskIndex;
-      showTaskDeleteModal(currentTaskIndex, tasks, taskList);
-    });
-  }
-
   projectForm.addEventListener('submit', function (e) {
     e.preventDefault();
     const projectName = document.getElementById('projectName').value;
@@ -177,25 +166,49 @@ document.addEventListener('DOMContentLoaded', function () {
   taskForm.addEventListener('submit', function (e) {
     e.preventDefault();
     const taskName = document.getElementById('taskName').value;
-    const taskResponsavel = document.getElementById('taskResponsavel').value; // Captura o nome do responsável
+    const taskResponsavel = document.getElementById('taskResponsavel').value;
 
     if (taskName && currentProjectIndex !== null) {
       const newTask = {
         name: taskName,
         status: 'pending',
         responsavel: taskResponsavel,
-      }; // Inclui o responsável na tarefa
+      };
       projects[currentProjectIndex].tasks.push(newTask);
       localStorage.setItem('projects', JSON.stringify(projects));
       displayProjects();
-      taskForm.reset(); // Limpa o campo do formulário
-      addTaskModal.style.display = 'none'; // Fecha o modal automaticamente
+      taskForm.reset();
+      addTaskModal.style.display = 'none';
     }
   });
 
   closeTaskModal.addEventListener('click', function () {
     addTaskModal.style.display = 'none';
   });
+
+  // Função para salvar os detalhes da tarefa
+  document
+    .getElementById('saveTaskDetails')
+    .addEventListener('click', function () {
+      const details = document.getElementById('taskDetails').value;
+      if (currentProjectIndex !== null && currentTaskIndex !== null) {
+        projects[currentProjectIndex].tasks[currentTaskIndex].details = details; // Salva os detalhes da tarefa
+        localStorage.setItem('projects', JSON.stringify(projects));
+        document.getElementById('taskDetailsModal').style.display = 'none'; // Fecha o modal após salvar
+        displayProjects(); // Atualiza a exibição dos projetos
+      } else {
+        console.error(
+          'Erro: Índice do projeto ou da tarefa não definido corretamente.'
+        );
+      }
+    });
+
+  // Evento para cancelar e fechar o modal de detalhes
+  document
+    .getElementById('closeTaskDetailsModal')
+    .addEventListener('click', function () {
+      document.getElementById('taskDetailsModal').style.display = 'none'; // Fecha o modal ao clicar em cancelar
+    });
 
   function showDeleteProjectWithTasksModal(projectIndex) {
     const modal = document.getElementById('deleteModal');
