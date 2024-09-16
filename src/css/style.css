@@ -18,76 +18,6 @@ h2 {
   margin-bottom: 20px;
 }
 
-a {
-  color: #333;
-  text-decoration: none;
-  font-weight: bold;
-}
-
-a:hover {
-  color: #007bff;
-}
-
-/* Estilo dos Formulários */
-form {
-  margin-bottom: 20px;
-}
-
-label {
-  display: block;
-  margin-bottom: 8px;
-  font-weight: bold;
-}
-
-input[type='text'],
-input[type='password'] {
-  width: 100%;
-  padding: 10px;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-button {
-  padding: 10px 15px;
-  background-color: #007bff;
-  color: white;
-  border: none;
-  border-radius: 5px;
-  cursor: pointer;
-}
-
-button:hover {
-  background-color: #0056b3;
-}
-
-/* Estilo da Lista de Projetos */
-ul {
-  list-style-type: none;
-}
-
-ul li {
-  padding: 10px;
-  background-color: white;
-  margin-bottom: 10px;
-  border: 1px solid #ccc;
-  border-radius: 5px;
-}
-
-/* Estilo para o Contêiner Centralizado */
-.container {
-  max-width: 600px;
-  margin: 0 auto;
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
-}
-
-p {
-  margin-bottom: 15px;
-}
-
 /* Botão Logout */
 button.logout,
 .logoutBtn {
@@ -103,7 +33,7 @@ button.logout:hover,
   background-color: #c82333;
 }
 
-/* Estilos para os ícones */
+/* Estilos dos ícones */
 .editIcon,
 .deleteIcon,
 .addTaskIcon {
@@ -133,7 +63,7 @@ button.logout:hover,
   color: darkred;
 }
 
-/* Estilos para o modal de exclusão e de adicionar tarefas */
+/* Estilos para os modais */
 .modal {
   display: none;
   position: fixed;
@@ -185,6 +115,19 @@ button.logout:hover,
   background-color: darkgray;
 }
 
+/* Estilo da Lista de Projetos */
+ul {
+  list-style-type: none;
+}
+
+ul li {
+  padding: 10px;
+  background-color: white;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
 /* Ajuste da lista de tarefas */
 .taskList li {
   display: flex;
@@ -192,7 +135,7 @@ button.logout:hover,
   align-items: center;
   margin-top: 5px;
   padding: 5px 0;
-  padding-left: 10px; /* Espaçamento à esquerda do checkbox */
+  padding-left: 15px; /* Espaçamento à esquerda do checkbox */
 }
 
 .taskList li input[type='checkbox'] {
@@ -207,4 +150,84 @@ button.logout:hover,
 .taskList li .deleteIcon {
   font-size: 1em;
   margin-left: auto;
+}
+
+/* Estilos para o status das tarefas */
+.statusSelect {
+  margin-left: 10px;
+  padding: 5px;
+  border-radius: 5px;
+  border: 1px solid #ccc;
+}
+
+.statusSelect option {
+  color: black;
+}
+
+.statusSelect option[value="pending"] {
+  color: orange;
+}
+
+.statusSelect option[value="inProgress"] {
+  color: blue;
+}
+
+.statusSelect option[value="complete"] {
+  color: green;
+}
+
+/* Ajustar o espaçamento entre o statusSelect e o ícone de exclusão */
+.taskList li .statusSelect {
+  margin-right: 20px; /* Espaço entre o status e o ícone de exclusão */
+}
+
+.taskList li .deleteIcon {
+  margin-left: auto; /* Mantém o ícone de exclusão alinhado à direita */
+}
+
+/* Estilo para o Contêiner Centralizado */
+.container {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 20px;
+  border-radius: 8px;
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.1);
+}
+
+p {
+  margin-bottom: 15px;
+}
+
+/* Estilo dos Formulários */
+form {
+  margin-bottom: 20px;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: bold;
+}
+
+input[type='text'],
+input[type='password'] {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+button {
+  padding: 10px 15px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+}
+
+button:hover {
+  background-color: #0056b3;
 }
