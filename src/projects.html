@@ -28,7 +28,7 @@
     <h2>Projetos Atuais</h2>
     <ul id="projectList"></ul>
 
-    <!-- Modal de confirmação de exclusão -->
+    <!-- Modal de confirmação de exclusão de projeto -->
     <div id="deleteModal" class="modal">
       <div class="modal-content">
         <p>Tem certeza de que deseja excluir este projeto?</p>
@@ -43,11 +43,31 @@
         <h2>Adicionar Nova Tarefa</h2>
         <form id="taskForm">
           <label for="taskName">Nome da Tarefa:</label>
-          <input type="text" id="taskName" required>
-          <br><br>
+          <input type="text" id="taskName" required />
+          <br /><br />
           <button type="submit" class="submitTaskBtn">Adicionar Tarefa</button>
-          <button type="button" id="closeTaskModal" class="cancelTaskBtn">Cancelar</button>
+          <button type="button" id="closeTaskModal" class="cancelTaskBtn">
+            Cancelar
+          </button>
         </form>
+      </div>
+    </div>
+
+    <!-- Modal de confirmação de exclusão de tarefa -->
+    <div id="deleteTaskModal" class="modal">
+      <div class="modal-content">
+        <p>Tem certeza de que deseja excluir esta tarefa?</p>
+        <button id="confirmDeleteTask" class="deleteModalBtn">Excluir</button>
+        <button id="cancelDeleteTask" class="cancelModalBtn">Cancelar</button>
+      </div>
+    </div>
+
+    <!-- Modal de confirmação de logout -->
+    <div id="logoutModal" class="modal">
+      <div class="modal-content">
+        <p>Tem certeza de que deseja fazer logout?</p>
+        <button id="confirmLogout" class="deleteModalBtn">Logout</button>
+        <button id="cancelLogout" class="cancelModalBtn">Cancelar</button>
       </div>
     </div>
 

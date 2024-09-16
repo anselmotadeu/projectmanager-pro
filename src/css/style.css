@@ -88,165 +88,32 @@ p {
   margin-bottom: 15px;
 }
 
-button.logout {
-  background-color: #dc3545;
-}
-
-button.logout:hover {
-  background-color: #c82333;
-}
-
-/* Estilos para os ícones */
-.editIcon {
-  color: blue;
-  cursor: pointer;
-  margin-left: 10px;
-}
-
-.deleteIcon {
-  color: red;
-  cursor: pointer;
-  margin-left: 10px;
-}
-
-/* Ajuste do tamanho dos ícones */
-.editIcon,
-.deleteIcon {
-  font-size: 1.2em; /* Ajuste o tamanho conforme necessário */
-}
-
-.editIcon:hover {
-  color: darkblue; /* Cor ao passar o mouse no ícone de edição */
-}
-
-.deleteIcon:hover {
-  color: darkred; /* Cor ao passar o mouse no ícone de exclusão */
-}
-
-/* Estilos para o modal de exclusão */
-.modal {
-  display: none; /* Modal começa escondido */
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5); /* Fundo escuro */
-  justify-content: center;
-  align-items: center; /* Centraliza o modal */
-}
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  width: 300px;
-}
-
-.deleteModalBtn {
-  background-color: red;
-  color: white;
-  padding: 10px 20px;
-  margin-right: 10px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.cancelModalBtn {
-  background-color: gray;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.deleteModalBtn:hover {
-  background-color: darkred;
-}
-
-.cancelModalBtn:hover {
-  background-color: darkgray;
-}
-
-/* Modal de adicionar tarefas */
-.modal {
-  display: none;
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background-color: rgba(0, 0, 0, 0.5);
-  justify-content: center;
-  align-items: center;
-}
-
-.modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
-  text-align: center;
-  width: 300px;
-}
-
-.submitTaskBtn {
-  background-color: blue;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-  margin-right: 10px;
-}
-
-.cancelTaskBtn {
-  background-color: gray;
-  color: white;
-  padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
-}
-
-.submitTaskBtn:hover {
-  background-color: darkblue;
-}
-
-.cancelTaskBtn:hover {
-  background-color: darkgray;
-}
-
-/* Estilo do cabeçalho e botão de logout */
-.header {
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-}
-
+/* Botão Logout */
+button.logout,
 .logoutBtn {
-  background-color: #ff6347;
-  color: white;
+  background-color: #dc3545;
   padding: 10px 20px;
-  border: none;
-  border-radius: 4px;
-  cursor: pointer;
   position: absolute;
   right: 10px;
   top: 10px;
 }
 
+button.logout:hover,
 .logoutBtn:hover {
-  background-color: #ff4500;
+  background-color: #c82333;
 }
 
-/* Ícones para o projeto e tarefas */
-.editIcon, .deleteIcon, .addTaskIcon {
+/* Estilos para os ícones */
+.editIcon,
+.deleteIcon,
+.addTaskIcon {
   cursor: pointer;
   font-size: 1.2em;
   margin-right: 10px;
+}
+
+.editIcon {
+  color: blue;
 }
 
 .deleteIcon {
@@ -255,17 +122,18 @@ button.logout:hover {
 
 .addTaskIcon {
   color: green;
+  font-size: 1.1em;
 }
 
-/* Ajustar o tamanho do botão "Adicionar Tarefa" */
-.addTaskBtn {
-  background-color: transparent;
-  border: none;
-  cursor: pointer;
-  font-size: 1.2em;
+.editIcon:hover {
+  color: darkblue;
 }
 
-/* Modal de adicionar tarefas */
+.deleteIcon:hover {
+  color: darkred;
+}
+
+/* Estilos para o modal de exclusão e de adicionar tarefas */
 .modal {
   display: none;
   position: fixed;
@@ -286,8 +154,9 @@ button.logout:hover {
   width: 300px;
 }
 
+.deleteModalBtn,
 .submitTaskBtn {
-  background-color: blue;
+  background-color: red;
   color: white;
   padding: 10px 20px;
   border: none;
@@ -296,6 +165,7 @@ button.logout:hover {
   margin-right: 10px;
 }
 
+.cancelModalBtn,
 .cancelTaskBtn {
   background-color: gray;
   color: white;
@@ -305,10 +175,36 @@ button.logout:hover {
   cursor: pointer;
 }
 
+.deleteModalBtn:hover,
 .submitTaskBtn:hover {
-  background-color: darkblue;
+  background-color: darkred;
 }
 
+.cancelModalBtn:hover,
 .cancelTaskBtn:hover {
   background-color: darkgray;
+}
+
+/* Ajuste da lista de tarefas */
+.taskList li {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-top: 5px;
+  padding: 5px 0;
+  padding-left: 10px; /* Espaçamento à esquerda do checkbox */
+}
+
+.taskList li input[type='checkbox'] {
+  margin-right: 10px; /* Espaçamento entre o checkbox e o nome da tarefa */
+}
+
+.taskList li span {
+  flex-grow: 1; /* O nome da tarefa ocupará todo o espaço à esquerda */
+  margin-right: 10px; /* Espaçamento entre o nome da tarefa e o ícone */
+}
+
+.taskList li .deleteIcon {
+  font-size: 1em;
+  margin-left: auto;
 }
