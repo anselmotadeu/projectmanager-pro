@@ -19,5 +19,69 @@
     <button id="logoutBtn">Logout</button>
 
     <script src="js/main.js"></script>
+
+    <!-- Footer -->
+<footer>
+  <div class="footer-content">
+    <!-- Área comum para logados e deslogados -->
+    <p>&copy; 2024 ProjectManager Pro - Todos os direitos reservados</p>
+
+    <!-- Área logada: Links e doação, visível apenas se o usuário estiver logado -->
+    <div id="footer-logged-in" style="display: none;">
+      <p>
+        <a href="https://github.com/anselmotadeu/projectmanager-pro" target="_blank">GitHub</a> |
+        <a href="https://www.linkedin.com/in/anselmo-santos-0114b5172/" target="_blank">LinkedIn</a> |
+        <a href="#" id="donate-link">Me pague um café</a>
+      </p>
+      <p>
+        <b>ProjectManager Pro</b> é uma aplicação simples e eficiente para gerenciar projetos e tarefas.
+      </p>
+    </div>
+  </div>
+</footer>
+
+<!-- Modal para QR Code -->
+<div id="qr-modal" class="modal">
+  <div class="modal-content">
+    <span id="qr-close" class="close">&times;</span>
+    <h2>Me pague um café</h2>
+    <p>Escaneie o QR Code abaixo para contribuir:</p>
+    <img src="images/qrcode.png" alt="QR Code para doação" style="width: 100%; max-width: 300px; height: auto;" />
+  </div>
+</div>
+
+<!-- Script para controle da visibilidade do rodapé e modal -->
+<script>
+  // Verifica se o usuário está logado e ajusta o rodapé
+  document.addEventListener('DOMContentLoaded', function () {
+    const loggedInUser = localStorage.getItem('loggedInUser');
+    const footerLoggedIn = document.getElementById('footer-logged-in');
+
+    if (loggedInUser) {
+      footerLoggedIn.style.display = 'block'; // Exibe as informações logado
+    }
+
+    // QR Code Modal
+    const donateLink = document.getElementById('donate-link');
+    const qrModal = document.getElementById('qr-modal');
+    const qrClose = document.getElementById('qr-close');
+
+    donateLink.addEventListener('click', function (e) {
+      e.preventDefault();
+      qrModal.style.display = 'flex';
+    });
+
+    qrClose.addEventListener('click', function () {
+      qrModal.style.display = 'none';
+    });
+
+    window.addEventListener('click', function (e) {
+      if (e.target === qrModal) {
+        qrModal.style.display = 'none';
+      }
+    });
+  });
+</script>
+
   </body>
 </html>

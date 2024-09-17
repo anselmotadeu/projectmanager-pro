@@ -10,6 +10,7 @@ body {
   background-color: #f4f4f4;
   color: #333;
   padding: 20px;
+  
 }
 
 h1,
@@ -81,7 +82,8 @@ button.logout:hover,
   padding: 20px;
   border-radius: 8px;
   text-align: center;
-  width: 300px;
+  width: 90%;
+  max-width: 400px;
 }
 
 .deleteModalBtn,
@@ -429,4 +431,45 @@ button:hover {
   .taskList li {
     flex-wrap: wrap; /* Permitir quebra de linha em telas pequenas */
   }
+}
+
+/* Estilos para o rodapé */
+footer {
+  background-color: #f8f9fa;
+  padding: 20px;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  text-align: center; /* Centraliza o conteúdo */
+  box-shadow: 0 -1px 5px rgba(0, 0, 0, 0.1);
+}
+
+.footer-content {
+  display: flex;
+  flex-direction: column;
+  align-items: center; /* Centraliza os elementos no eixo vertical */
+  justify-content: center; /* Centraliza no eixo horizontal */
+}
+
+.footer-content p {
+  margin: 5px 0;
+}
+
+.footer-content a {
+  color: #007bff;
+  text-decoration: none;
+  margin: 0 10px;
+}
+
+.footer-content a:hover {
+  color: #0056b3;
+  text-decoration: underline;
+}
+
+#qr-modal img {
+  margin: 15px 0;
+}
+
+main {
+  flex: 1; /* Faz o conteúdo expandir para ocupar o espaço restante */
 }
